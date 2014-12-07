@@ -1,0 +1,2 @@
+add_library(objective_cuda objective_cuda.cpp)
+target_link_libraries(objective_cuda cuda)
