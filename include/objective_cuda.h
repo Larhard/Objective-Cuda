@@ -1,3 +1,5 @@
+#ifndef OBJECTIVE_CUDA_H
+
 #include <cassert>
 #include <cstdarg>
 #include <cstdio>
@@ -5,6 +7,10 @@
 #include <exception>
 
 #include "cuda.h"
+
+#ifndef CUDA_PTX_PREFIX
+#define CUDA_PTX_PREFIX
+#endif
 
 namespace CuError {
     struct CuException : public std::exception {  // TODO make it nicer
@@ -129,3 +135,5 @@ class Cuda{
 
         void ctx_synchronize();
 };
+
+#endif // OBJECTIVE_CUDA_H

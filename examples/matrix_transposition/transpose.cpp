@@ -41,7 +41,7 @@ void gpu_transpose_with_shared_mem(int *dest, const int *src, int height, int wi
     assert((width & (width - 1)) == 0);  // TODO
     assert((height & (height - 1)) == 0);
 
-    cuda->set_default_module("transpose.ptx");
+    cuda->set_default_module(CUDA_PTX_PREFIX"transpose.cu.ptx");
     CUfunction transpose_kernel = cuda->get_kernel("transpose_with_shared_mem");
 
     int grid_dim_x = width / TILE_DIM;
