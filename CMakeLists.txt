@@ -20,5 +20,5 @@ add_definitions(-DCUDA_PTX_PREFIX="cuda_compile_ptx_generated_")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${CUDA_TOOLKIT_INCLUDE})
 
-add_subdirectory(objective_cuda)
+add_subdirectory(src)
 add_subdirectory(examples)
