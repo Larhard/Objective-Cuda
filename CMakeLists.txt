@@ -15,6 +15,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CUDA_GENERATED_OUTPUT_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 add_definitions(-DCUDA_PTX_PREFIX="cuda_compile_ptx_generated_")
+# TODO should be cleaner solution
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${CUDA_TOOLKIT_INCLUDE})
