@@ -46,7 +46,7 @@ namespace CuError {
         }
 
         virtual const char* default_message() const throw() {
-            return "Something gone wrong\n";
+            return "";
         }
 
         virtual const char* what() const throw () {
@@ -108,6 +108,8 @@ class Cuda{
         CUfunction get_kernel(const char *kernel_name);
 
         CUfunction get_kernel(const char *kernel_name, CUmodule cuModule);
+
+        // TODO launch_kernel_1d
 
         void launch_kernel_3d(CUfunction kernel,
                 uint grid_dim_x, uint grid_dim_y, uint grid_dim_z,
