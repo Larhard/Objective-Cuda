@@ -86,8 +86,6 @@ namespace CuError {
     #undef CU_EXCEPTION
 
     const char *strerror(CUresult result);
-
-    void cu_assert(CUresult result, const char *message="");
 }
 
 class Cuda{

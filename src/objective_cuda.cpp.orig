@@ -56,12 +56,6 @@ namespace CuError {
             default: return "Unknown CUDA error value"; 
         } 
     }
-
-    void cu_assert(CUresult result, const char *message) {
-        if (result != CUDA_SUCCESS) {
-            throw CuException("%s : %s : %d", message, strerror(result), result);
-        }
-    }
 }
 
 Cuda::Cuda(int device_id, int init_flags) {
