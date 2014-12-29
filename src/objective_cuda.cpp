@@ -51,6 +51,10 @@ namespace CuError {
             case CUDA_ERROR_LAUNCH_TIMEOUT: return "Launch exceeded timeout"; 
             case CUDA_ERROR_LAUNCH_INCOMPATIBLE_TEXTURING: return "Launch with incompatible texturing"; 
 
+            case CUDA_ERROR_HOST_MEMORY_NOT_REGISTERED: return "Host memory not registered";
+            case CUDA_ERROR_NOT_PERMITTED: return "Not permitted";
+            case CUDA_ERROR_NOT_SUPPORTED: return "Not supported";
+
             case CUDA_ERROR_UNKNOWN: return "Unknown error"; 
 
             default: return "Unknown CUDA error value"; 
