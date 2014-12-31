@@ -111,8 +111,6 @@ class Cuda{
 
         CUfunction get_kernel(const char *kernel_name, CUmodule cuModule);
 
-        // TODO launch_kernel_1d
-
         void launch_kernel_3d(CUfunction kernel,
                 uint grid_dim_x, uint grid_dim_y, uint grid_dim_z,
                 uint block_dim_x, uint block_dim_y, uint block_dim_z,
@@ -136,6 +134,57 @@ class Cuda{
                 uint shared_mem_bytes = 0,
                 CUstream h_stream = 0,
                 void ** extra = NULL);
+
+        inline void launch_kernel_sync(CUfunction kernel,
+                uint grid_dim_x, uint grid_dim_y, uint grid_dim_z,
+                uint block_dim_x, uint block_dim_y, uint block_dim_z,
+                void ** args = NULL,
+                uint shared_mem_bytes = 0,
+                CUstream h_stream = 0,
+                void ** extra = NULL) {
+            launch_kernel_3d(kernel,
+                    grid_dim_x,
+                    block_dim_x,
+                    args,
+                    shared_mem_bytes,
+                    h_stream,
+                    extra);
+            ctx_synchronize();
+        }
+
+        inline void launch_kernel_2d_sync(CUfunction kernel,
+                uint grid_dim_x, uint grid_dim_y, uint grid_dim_z,
+                uint block_dim_x, uint block_dim_y, uint block_dim_z,
+                void ** args = NULL,
+                uint shared_mem_bytes = 0,
+                CUstream h_stream = 0,
+                void ** extra = NULL) {
+            launch_kernel_3d(kernel,
+                    grid_dim_x, grid_dim_y,
+                    block_dim_x, block_dim_y,
+                    args,
+                    shared_mem_bytes,
+                    h_stream,
+                    extra);
+            ctx_synchronize();
+        }
+
+        inline void launch_kernel_3d_sync(CUfunction kernel,
+                uint grid_dim_x, uint grid_dim_y, uint grid_dim_z,
+                uint block_dim_x, uint block_dim_y, uint block_dim_z,
+                void ** args = NULL,
+                uint shared_mem_bytes = 0,
+                CUstream h_stream = 0,
+                void ** extra = NULL) {
+            launch_kernel_3d(kernel,
+                    grid_dim_x, grid_dim_y, grid_dim_z,
+                    block_dim_x, block_dim_y, block_dim_z,
+                    args,
+                    shared_mem_bytes,
+                    h_stream,
+                    extra);
+            ctx_synchronize();
+        }
 
         void ctx_synchronize();
 };
