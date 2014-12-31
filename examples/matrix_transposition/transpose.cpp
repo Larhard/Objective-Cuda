@@ -25,12 +25,11 @@ void gpu_transpose_naive(int *dest, const int *src, int height, int width) {
     cuMemcpyHtoD(device_src, src, width*height*sizeof(int));
 
     void *args[] = {&device_dest, &device_src, &height, &width};
-    cuda->launch_kernel_2d(transpose_kernel,
+    cuda->launch_kernel_2d_sync(transpose_kernel,
             grid_dim_x, grid_dim_y,
             BLOCK_DIM_X, BLOCK_DIM_Y,
             args);
 
-    cuda->ctx_synchronize();
     cuMemcpyDtoH(dest, device_dest, width*height*sizeof(int));
     cuMemFree(device_src);
     cuMemFree(device_dest);
@@ -54,12 +53,11 @@ void gpu_transpose_with_shared_mem(int *dest, const int *src, int height, int wi
     cuMemcpyHtoD(device_src, src, width*height*sizeof(int));
 
     void *args[] = {&device_dest, &device_src};
-    cuda->launch_kernel_2d(transpose_kernel,
+    cuda->launch_kernel_2d_sync(transpose_kernel,
             grid_dim_x, grid_dim_y,
             TILE_DIM, 2,
             args);
 
-    cuda->ctx_synchronize();
     cuMemcpyDtoH(dest, device_dest, width*height*sizeof(int));
     cuMemFree(device_src);
     cuMemFree(device_dest);
