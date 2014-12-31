@@ -136,13 +136,13 @@ class Cuda{
                 void ** extra = NULL);
 
         inline void launch_kernel_sync(CUfunction kernel,
-                uint grid_dim_x, uint grid_dim_y, uint grid_dim_z,
-                uint block_dim_x, uint block_dim_y, uint block_dim_z,
+                uint grid_dim_x,
+                uint block_dim_x,
                 void ** args = NULL,
                 uint shared_mem_bytes = 0,
                 CUstream h_stream = 0,
                 void ** extra = NULL) {
-            launch_kernel_3d(kernel,
+            launch_kernel(kernel,
                     grid_dim_x,
                     block_dim_x,
                     args,
@@ -153,13 +153,13 @@ class Cuda{
         }
 
         inline void launch_kernel_2d_sync(CUfunction kernel,
-                uint grid_dim_x, uint grid_dim_y, uint grid_dim_z,
-                uint block_dim_x, uint block_dim_y, uint block_dim_z,
+                uint grid_dim_x, uint grid_dim_y,
+                uint block_dim_x, uint block_dim_y,
                 void ** args = NULL,
                 uint shared_mem_bytes = 0,
                 CUstream h_stream = 0,
                 void ** extra = NULL) {
-            launch_kernel_3d(kernel,
+            launch_kernel_2d(kernel,
                     grid_dim_x, grid_dim_y,
                     block_dim_x, block_dim_y,
                     args,
