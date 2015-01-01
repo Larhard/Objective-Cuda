@@ -1,4 +1,5 @@
 #ifndef OBJECTIVE_CUDA_H
+#define OBJECTIVE_CUDA_H
 
 #include <cassert>
 #include <cstdarg>
